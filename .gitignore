@@ -123,6 +123,7 @@ celerybeat.pid
 .env
 .venv
 env/
+openai-env/
 venv/
 ENV/
 env.bak/
