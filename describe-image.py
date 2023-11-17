@@ -6,7 +6,7 @@ def encode_image(image_path):
   with open(image_path, "rb") as image_file:
     return base64.b64encode(image_file.read()).decode('utf-8')
 
-image_path = 'data/dog.jpg'
+image_path = 'data/raccoon.jpg'
 base64_image = encode_image(image_path)
 
 
@@ -18,7 +18,7 @@ response = client.chat.completions.create(
     {
       "role": "user",
       "content": [
-        {"type": "text", "text": "describe this image, provide as many details as possible"},
+        {"type": "text", "text": "describe this image, cover important details"},
         {
           "type": "image_url",
           "image_url": {

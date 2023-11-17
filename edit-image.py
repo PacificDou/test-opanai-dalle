@@ -9,7 +9,7 @@ from PIL import ImageDraw
 
 client = OpenAI()
 
-image_path = 'data/cat.jpg'
+image_path = 'data/raccoon.jpg'
 
 
 # convert to PNG if necessary
@@ -23,7 +23,7 @@ if ext.lower() != 'png':
 
 # generate mask
 mask_image_path = image_path + '.mask.png'
-polygon = [(90, 127), (698, 127), (698, 700), (90, 700)] # straight lines between the given coordinates, plus a straight line between the last and the first coordinate
+polygon = [(152, 50), (610, 50), (610, 630), (152, 630)] # straight lines between the given coordinates, plus a straight line between the last and the first coordinate
 if not os.path.exists(mask_image_path):
     img = Image.open(image_path)
     mask = Image.new('L', img.size, color=255)
@@ -38,10 +38,10 @@ response = client.images.edit(
   model="dall-e-2",
   image=open(image_path, "rb"),
   mask=open(mask_image_path, "rb"),
-  prompt="""This image features a close-up of a fawn or cream-colored cat wearing a cute costume hat that resembles the head of another cat, specifically with features like that of the Hello Kitty character. The hat is predominantly white with black details representing the eyes, whiskers, and six dots above the eyes, which may indicate the presence of eyelashes or maybe a play on the fur pattern typically seen in cartoon character designs. There are also prominent pink details that represent the nose and the inner parts of the ears.
-
-    The cat itself has large, expressive eyes and a small pink nose centered between its short white whiskers. Its facial expression seems relaxed and slightly curious or bemused. The cat's fur appears to be short and well-groomed, and its round face accentuates its endearing look. The background is indistinguishable and somewhat blurred, keeping the focus entirely on the cat.
-    """.replace('cat', 'puppy'),
+  prompt="""This image features a raccoon perched in a tree. The raccoon's face is visible with its characteristic black mask and pointy ears accentuated by white outlines. 
+    Its fur appears dense and mixtures of grey, black, and hints of brown. The creature looks directly at the camera, conveying a sense of curiosity or alertness. 
+    The background is slightly blurred, throwing the focus onto the raccoon and allowing us to observe the detail of its fur and the sharpness of its gaze. 
+    Surrounding branches suggest the raccoon is nestled comfortably in a green, leafy environment, typical of a woodland or forest habitat where raccoons are often found.""".replace('raccoon', 'cat'),
   n=1,
   size="1024x1024"
 )

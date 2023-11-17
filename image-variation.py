@@ -7,7 +7,7 @@ import matplotlib.image as mpimg
 
 client = OpenAI()
 
-image_path = 'data/dog.jpg'
+image_path = 'data/raccoon.jpg'
 
 
 # convert to PNG if necessary
